@@ -9,6 +9,11 @@ body.bg-grey {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+ /* Apply Montserrat Font to Entire Project */
+ body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 /* Desktop Container */
 .desktop-container {
     position: relative;
@@ -377,4 +382,16 @@ body.bg-grey {
     height: 100vh !important; /* Full screen height */
     max-width: none !important;
     margin: 0; /* Remove any margin */
+}
+
+
+/* Hover animation for AI LINKS cards */
+.ai-link-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-link-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 255, 255, 0.2);
+    cursor: pointer;
 }

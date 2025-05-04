@@ -22,7 +22,12 @@ function openApp(appName) {
     if (appName === 'AI Folders') {
         const modal = new bootstrap.Modal(document.getElementById('aiFoldersModal'));
         modal.show();
-    } else if (appName === 'Recycle Bin') {
+    }
+    else if (appName === "AI LINKS") {
+        var modal = new bootstrap.Modal(document.getElementById('aiLinksModal'));
+        modal.show();
+    }
+     else if (appName === 'Recycle Bin') {
         alert('Recycle Bin opened');
     } else if (appName === 'Settings') {
         alert('Settings opened');
@@ -31,27 +36,33 @@ function openApp(appName) {
     }
 }
 
-// JavaScript to toggle modal maximization
-document.getElementById('maximizeBtn').addEventListener('click', function () {
-    var modalDialog = document.getElementById('aiModalDialog');
-    modalDialog.classList.toggle('modal-lg-custom'); // Toggle maximized class
+// Function to toggle modal maximization
+function toggleModalMaximization(modalId, buttonId) {
+    const modalDialog = document.getElementById(modalId);
+    const maximizeButton = document.getElementById(buttonId);
+    
+    maximizeButton.addEventListener('click', function () {
+        modalDialog.classList.toggle('modal-lg-custom'); // Toggle maximized class
+        
+        // Change maximize icon to restore icon when maximized
+        const icon = this.querySelector('i');
+        if (modalDialog.classList.contains('modal-lg-custom')) {
+            icon.classList.remove('fa-square');
+            icon.classList.add('fa-window-restore');
+        } else {
+            icon.classList.remove('fa-window-restore');
+            icon.classList.add('fa-square');
+        }
+    });
+}
 
-    // Optional: Change maximize icon to restore icon when maximized
-    var icon = this.querySelector('i');
-    if (modalDialog.classList.contains('modal-lg-custom')) {
-        icon.classList.remove('fa-square');
-        icon.classList.add('fa-window-restore');
-    } else {
-        icon.classList.remove('fa-window-restore');
-        icon.classList.add('fa-square');
-    }
-});
+// Call the function for AI Folders Modal
+toggleModalMaximization('aiFoldersModalDialog', 'maximizeFoldersBtn');
 
+// Call the function for AI Links Modal
+toggleModalMaximization('aiLinksModalDialog', 'maximizeLinksBtn');
 
-
-
-
-
+// Terminal commands
 document.addEventListener('DOMContentLoaded', function () {
     const terminalInput = document.getElementById('terminalInput');
     const terminalBody = document.getElementById('terminalBody');
@@ -62,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (command) {
                 // Echo the typed command with correct prompt
                 const newLine = document.createElement('p');
-                newLine.innerHTML = `
+                newLine.innerHTML = ` 
                     <span class="terminal-prompt">
                         <span class="text-red">user</span><span class="text-grey">@</span><span class="text-green">ubuntu</span><span class="text-grey">:~$</span>
                     </span> ${command}
@@ -95,5 +106,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
